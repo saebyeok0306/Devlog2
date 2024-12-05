@@ -71,6 +71,7 @@ import TableAutoFit from "./custom/TableAutoFit";
 import UpgradeSentence from "./custom/UpgradeSentence";
 import TitleSuggestion from "./custom/TitleSuggestion";
 import FileUploader from "./custom/FileUploader";
+import HighlightedLine from "./custom/HighlightedLine";
 
 const editorConfig = {
   toolbar: {
@@ -185,6 +186,7 @@ const editorConfig = {
     UpgradeSentence,
     TitleSuggestion,
     FileUploader,
+    HighlightedLine,
   ],
   balloonToolbar: [
     "bold",
@@ -193,6 +195,7 @@ const editorConfig = {
     "link",
     "insertImage",
     "|",
+    "HighlightedLine",
     "upgradeSentence",
     "titleSuggestion",
   ],
