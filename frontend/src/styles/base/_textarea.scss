@@ -1,0 +1,8 @@
+textarea:focus {
+  box-shadow: none !important;
+}
+
+textarea {
+  // textarea의 content 크기에 맞춰 높이를 조절하는 css
+  resize: none !important;
+}

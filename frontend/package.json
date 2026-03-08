@@ -1,51 +1,53 @@
 {
-  "name": "frontend",
+  "name": "frontend-nextjs14",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.6.8",
+    "@ckeditor/ckeditor5-react": "9.3.0",
+    "@egjs/react-grid": "^1.17.0",
+    "@egjs/react-infinitegrid": "^4.12.0",
+    "axios": "^1.12.0",
+    "chart.js": "^4.4.7",
+    "ckeditor5": "43.1.1",
     "classnames": "^2.5.1",
-    "flowbite-react": "^0.9.0",
-    "react": "^18.2.0",
-    "react-cookie": "^7.1.4",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.3",
-    "react-scripts": "5.0.1",
+    "flowbite-react": "^0.10.2",
+    "highlight.js": "^11.11.0",
+    "mem": "^9.0.2",
+    "moment-timezone": "^0.5.46",
+    "next": "14.2.35",
+    "next-themes": "^0.4.4",
+    "react": "^18",
+    "react-chartjs-2": "^5.2.0",
+    "react-cookie": "^7.2.2",
+    "react-dom": "^18",
+    "react-ga4": "^2.1.0",
+    "react-google-recaptcha": "^3.1.0",
+    "react-image-crop": "^11.0.7",
+    "react-image-file-resizer": "^0.4.8",
+    "react-spinners": "^0.15.0",
+    "react-toastify": "^10.0.6",
     "recoil": "^0.7.7",
     "recoil-persist": "^5.1.0",
-    "sass": "^1.75.0",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "sass": "^1.83.0",
+    "tocbot": "^4.32.2",
+    "js-yaml": "^4.1.1"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "prettier": "^3.2.5",
-    "tailwindcss": "^3.4.3"
+    "@ckeditor/ckeditor5-inspector": "^4.1.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.35",
+    "postcss": "^8",
+    "prettier": "^3.4.2",
+    "tailwindcss": "^3.4.1"
+  },
+  "overrides": {
+    "glob": "^10.5.0"
   }
 }

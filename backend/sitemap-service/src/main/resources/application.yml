@@ -1,0 +1,25 @@
+server:
+  port: 8002
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://discovery-service:8761/eureka/
+
+spring:
+  cloud:
+    config:
+      enabled: false
+  application:
+    name: sitemap-service
+  config:
+    import:
+      - classpath:/yaml/application-local.yml
+      - classpath:/yaml/application-prod.yml
+  profiles:
+    active: local

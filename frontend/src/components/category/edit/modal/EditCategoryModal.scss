@@ -1,0 +1,17 @@
+@import "src/styles/commons";
+
+div.edit-category-modal {
+  div.edit-category-modal-body {
+    .edit-category-modal-body-title {
+      width: 100%;
+      background-color: inherit;
+      margin-bottom: 0.5em;
+    }
+    .dropdown-auth {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      font-size: 1.1em;
+    }
+  }
+}

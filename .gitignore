@@ -1,1 +1,5 @@
 .env
+*.7z
+frontend-nextjs
+frontend-prev
+.idea

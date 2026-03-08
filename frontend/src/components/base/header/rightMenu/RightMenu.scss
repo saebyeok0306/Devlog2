@@ -1,0 +1,28 @@
+@import "src/styles/commons";
+
+.rightmenu {
+  display: flex;
+  flex-direction: row;
+
+  nav {
+    button {
+      display: flex;
+    }
+    div.dropdown {
+      button {
+        width: 9em;
+        display: flex;
+        justify-content: space-between;
+        div {
+          display: flex;
+        }
+        dot {
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background-color: aqua;
+        }
+      }
+    }
+  }
+}

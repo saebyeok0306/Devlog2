@@ -1,0 +1,19 @@
+.post-statistics-container {
+  .breadcrumb {
+    margin: 1rem 0 0.5rem 0.5rem;
+  }
+  .content {
+    background-color: #fbfbfb;
+    &:is(.dark *) {
+      background-color: #242424;
+    }
+    padding: 2em;
+    border-radius: 15px;
+    .content-help {
+    }
+
+    .views {
+      margin-top: 1rem;
+    }
+  }
+}

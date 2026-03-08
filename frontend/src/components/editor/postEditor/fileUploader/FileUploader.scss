@@ -1,0 +1,21 @@
+.file-upload-files {
+  margin-top: 1em;
+  .file-upload-file {
+    display: flex;
+    flex-direction: row;
+
+    .file-upload-file-name {
+      margin-top: auto;
+      margin-bottom: auto;
+      margin-right: 0.5em;
+    }
+  }
+}
+
+.file-upload-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+}

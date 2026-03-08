@@ -1,0 +1,44 @@
+.maintenance-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  font-family: "Arial", sans-serif;
+
+  .maintenance-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    .maintenance-icon {
+      display: block;
+      margin: 0 auto 1em auto;
+    }
+
+    h1 {
+      color: #333;
+      font-size: 24px;
+      font-family: "SokchoBadaBatang";
+    }
+
+    p {
+      color: #666;
+      margin: 10px 0 20px;
+    }
+
+    .retry-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .retry-button:hover {
+      background-color: #0056b3;
+    }
+  }
+}

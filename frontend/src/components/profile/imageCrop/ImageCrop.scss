@@ -1,0 +1,17 @@
+@import "src/styles/commons";
+
+.imageCrop-container {
+  text-align: center;
+  margin-top: 1em;
+  .imageCrop-cropper {
+    max-height: 400px;
+    background-color: rgba(240, 240, 240, 0.5);
+
+    &:is(.dark *) {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .ReactCrop__crop-selection {
+    }
+  }
+}

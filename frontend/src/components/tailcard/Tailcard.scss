@@ -1,0 +1,26 @@
+﻿
+.tailcard-container {
+  display: flex;
+  flex-direction: row;
+  background-color: #f6f6f6;
+  border-radius: 10px;
+  padding: 3em 1.5em;
+  gap: 1em;
+
+  &:is(.dark *) {
+    background-color: #1c1c1c;
+  }
+
+  .profile {
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .name {
+      font-size: 1.1em;
+      font-weight: bold;
+      font-family: "SokchoBadaBatang";
+    }
+  }
+}

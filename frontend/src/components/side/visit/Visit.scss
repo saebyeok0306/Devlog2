@@ -1,0 +1,21 @@
+@import "src/styles/commons";
+
+.blog-visit-box {
+  .container {
+    div {
+      margin: 0 0.5em 0 0.5em;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      .name {
+        font-family: "SokchoBadaBatang";
+      }
+    }
+    .today .value {
+      color: #702dab;
+      &:is(.dark *) {
+        color: #bb91df;
+      }
+    }
+  }
+}

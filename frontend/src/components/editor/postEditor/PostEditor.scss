@@ -1,0 +1,63 @@
+@import "src/styles/commons";
+
+.editor-container.post-editor {
+  .editor-container__editor {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    .ck.ck-editor {
+      position: static !important;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .ck.ck-editor__editable:not(.ck-editor__nested-editable) {
+      min-height: 1000px;
+      max-height: 1000px;
+      padding: 0 3em;
+
+      @include mediaquery(medium) {
+        padding: 0 1em;
+      }
+    }
+    .ck.ck-editor__main {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+    }
+    .ck.ck-toolbar {
+      justify-content: center;
+      width: 100%;
+    }
+    .ck.ck-toolbar__items {
+      max-width: 1300px;
+      justify-content: center;
+    }
+    .ck.ck-editor__top .ck-sticky-panel .ck-sticky-panel__content {
+      border-width: 0px;
+      border-top-width: 1px;
+      border-bottom-width: 1px;
+    }
+    .ck.ck-content {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      word-break: break-word;
+      margin-bottom: 1px;
+    }
+
+    .post-editor-publish-btn {
+      border: none;
+      border-radius: 15px;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      outline-width: 1px;
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+}

@@ -4,8 +4,11 @@
   text-align: center;
   color: white;
   background-color: royalblue;
-
   cursor: pointer;
+}
+
+button {
+  user-select: none;
 }
 
 .buttons {

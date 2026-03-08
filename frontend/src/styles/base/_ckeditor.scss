@@ -1,0 +1,202 @@
+.ck-powered-by {
+  display: none;
+}
+
+.ck-content > blockquote,
+.ck-content > dl,
+.ck-content > dd,
+.ck-content > h1,
+.ck-content > h2,
+.ck-content > h3,
+.ck-content > h4,
+.ck-content > h5,
+.ck-content > h6,
+.ck-content > hr,
+.ck-content > figure,
+.ck-content > p,
+.ck-content > pre {
+  margin: revert;
+}
+
+.ck-content > blockquote {
+  font-style: revert !important;
+  overflow: visible !important;
+}
+
+.ck-content > ol,
+.ck-content > ul {
+  list-style: revert;
+  margin: revert;
+  padding: revert;
+}
+
+.ck-content > table {
+  border-collapse: revert;
+}
+
+.ck-content > p a {
+  text-decoration: revert;
+  //   color: revert;
+}
+
+.ck-content > h1,
+.ck-content > h2,
+.ck-content > h3,
+.ck-content > h4,
+.ck-content > h5,
+.ck-content > h6 {
+  font-size: revert;
+  font-weight: revert;
+}
+
+.ck-content > h1 {
+  font-size: 1.7rem;
+}
+
+.ck-content pre {
+  // code block
+  background-color: #171b20 !important;
+  border: 1px solid #374151 !important;
+  color: rgb(210, 210, 210) !important;
+  // padding: 0px !important;
+}
+
+.ck-content .table table th {
+  background: hsla(213, 67%, 32%, 0.12) !important;
+}
+
+.ck-content {
+  font-size: 1rem;
+  line-height: 1.7rem;
+
+  h1 {
+    padding-bottom: 0.5em;
+    margin-bottom: 0;
+    border-bottom-width: 1px;
+    border-bottom-color: #212121;
+  }
+
+  a {
+    text-decoration-line: none !important;
+    color: #04ccdd !important;
+    strong {
+      color: inherit !important;
+    }
+  }
+
+  strong {
+    color: #212121;
+  }
+
+  code {
+    font-family: "NanumGothic", sans-serif;
+    background-color: hsla(44, 6%, 50%, 0.15) !important;
+    color: #eb5757;
+    padding: 2.4px 4px 2.4px 4px !important;
+    margin: 0 2px 0 2px;
+  }
+
+  pre code {
+    background-color: inherit !important;
+    color: inherit;
+    padding: 0 !important;
+  }
+
+  &:is(.dark *) {
+    color: #d1d5db;
+
+    h1 {
+      border-bottom-color: #e1e1e1;
+    }
+    strong {
+      color: #e1e1e1;
+    }
+  }
+}
+
+.editor-container {
+  display: flex;
+  flex: 1;
+  //   color: #000;
+  --ck-focus-ring: 1px solid #c5c5c5;
+  &:is(.dark *) {
+    --ltrs-color-white: #fff;
+    --ltrs-color-gray: #242424;
+    --ltrs-color-gray-blue: #59697d;
+    --ltrs-color-gray-purple: #795f86;
+    --ltrs-color-gray2: #343434;
+    --ck-color-input-background: #4a494b;
+
+    --ck-color-text: var(--ltrs-color-white);
+    --ck-color-toolbar-border: var(--ltrs-color-gray2) !important;
+    --ck-color-base-border: var(--ltrs-color-gray2);
+
+    --ck-color-toolbar-background: var(--ltrs-color-gray);
+    --ck-color-base-background: var(--ltrs-color-gray);
+    --ck-color-base-foreground: var(--ltrs-color-gray);
+    --ck-color-list-background: var(--ltrs-color-gray); // 리스트 배경
+    --ck-color-list-button-hover-background: var(
+      --ltrs-color-gray-purple
+    ); // 리스트 호버
+    --ck-color-dropdown-panel-background: var(--ltrs-color-gray);
+    --ck-color-dropdown-panel-hover-background: var(--ltrs-color-gray);
+    --ck-color-button-default-hover-background: var(--ltrs-color-gray-purple);
+
+    --ck-focus-ring: 1px solid #414141;
+
+    --ck-balloon-arrow-height: 11px;
+    --ck-balloon-arrow-half-width: 7px;
+    --ck-color-toolbar-border: var(--ltrs-color-gray);
+    --ck-color-panel-border: var(--ltrs-color-gray);
+    --ck-color-panel-background: var(--ltrs-color-gray);
+
+    /* Change the default button colors for all states. */
+    --ck-color-button-default-background: var(--ltrs-color-gray);
+    --ck-color-button-default-active-background: var(--ltrs-color-gray-blue);
+    --ck-color-button-default-active-shadow: var(--ltrs-color-gray-blue);
+    --ck-color-button-default-focus-background: var(--ltrs-color-gray-blue);
+    --ck-color-button-default-disabled-background: var(
+      --ck-color-button-default-background
+    );
+
+    --ck-color-button-on-background: #363636; // 툴바 버튼 클릭되었을 때
+    --ck-color-button-on-color: var(
+      --ltrs-color-gray-purple
+    ); // 툴바 버튼 클릭되었을 때
+    --ck-color-button-on-active-background: var(
+      --ltrs-color-gray-purple
+    ); // 툴바 버튼이 작동할 때
+    --ck-color-split-button-hover-background: var(
+      --ltrs-color-gray-purple
+    ); // 툴바 버튼 호버
+    --ck-color-button-on-active-shadow: hsl(138, 100%, 50%);
+    --ck-color-button-on-focus-background: hsl(61, 100%, 50%);
+
+    --ck-color-dialog-background: var(--ltrs-color-gray);
+    --ck-color-button-action-background: var(--ltrs-color-gray-purple);
+  }
+}
+
+.ck.ck-editor__top .ck-sticky-panel .ck-toolbar {
+  border-top-width: 0px !important;
+  border-bottom-width: 1px !important;
+  border-radius: 0px !important;
+}
+
+.ck.ck-editor__editable {
+  border-top-width: 0 !important;
+}
+
+.ck-editor__main {
+  border-top-width: 0;
+}
+
+.ck.ck-content h1:first-child {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e5e5e5;
+
+  &:is(.dark *) {
+    border-bottom-color: #363636;
+  }
+}

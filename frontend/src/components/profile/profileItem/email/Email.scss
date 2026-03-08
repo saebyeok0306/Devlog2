@@ -1,0 +1,32 @@
+@import "src/styles/commons";
+
+.profile-container {
+  .profile-body {
+    .profile-body-email-box {
+      .content-box {
+        display: flex;
+        margin-bottom: 0.5em;
+        .content-label {
+          flex: 2;
+          font-size: 1.5em;
+          font-weight: bold;
+        }
+        .content-data {
+          flex: 8;
+          .content-data-email {
+            display: flex;
+            margin: auto 0;
+            font-size: 1.1em;
+            gap: 0.5em;
+
+            input {
+              background-color: inherit;
+              padding: 0px;
+              border-radius: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.printWidth": 100,
+  "prettier.tabWidth": 2,
+  "prettier.useTabs": false,
+  "prettier.semi": true,
+  "prettier.singleQuote": false,
+  "prettier.trailingComma": "es5",
+  "prettier.quoteProps": "as-needed",
+  "prettier.arrowParens": "always",
+  "prettier.bracketSpacing": true,
+  "prettier.singleAttributePerLine": true // 여러 속성을 가진 JSX 요소의 각 속성을 개행할지 여부를 지정합니다.
+}

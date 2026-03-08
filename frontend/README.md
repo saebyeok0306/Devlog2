@@ -1,24 +1,4 @@
-# Devlog Front-end
+# 개발이슈
 
-참고자료 https://github.com/velopert/velog
-
-
-## jsconfig.json
-
-```
-{
-    "compilerOptions": {
-        "baseUrl": "src",
-        "paths": {
-            "api/*": ["api/*"],
-            "components/*": ["components/*"],
-            "containers/*": ["containers/*"],
-            "assets/*": ["assets/*"],
-            "pages/*": ["pages/*"],
-            "recoil/*": ["recoil/*"],
-            "routes/*": ["routes/*"]
-        }
-    },
-    "include": ["src"]
-}
-```
+- react-chartjs-2가 react 19와 호환되지 않음.
+- 이슈에 있는걸 봐서 곧 해결될 문제로 보임.

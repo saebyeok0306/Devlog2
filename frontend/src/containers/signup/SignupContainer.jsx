@@ -1,13 +1,12 @@
 import React from "react";
-import Signup from "components/base/Login/signup";
-
+import Signup from "@/components/base/userLogin/signup";
 
 function SignupContainer() {
   return (
     <>
-      <Signup/>
+      <Signup />
     </>
-  )
+  );
 }
 
 export default SignupContainer;

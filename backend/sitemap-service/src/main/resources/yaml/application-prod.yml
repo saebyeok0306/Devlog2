@@ -1,0 +1,8 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+sitemap:
+  path: /app/sitemap
+  resource:
+    path: /app/sub-sitemap

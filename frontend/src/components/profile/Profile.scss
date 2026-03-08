@@ -1,10 +1,63 @@
 @import "src/styles/commons";
 
-.profile {
+.profile-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin: 1em;
 
-  .square-image {
+  hr {
+    margin: 1em 0;
+  }
+  .profile-header {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+
+    div.profile-info-hr {
+      border-left-width: 1px;
+      width: 1px;
+    }
+
+    @include mediaquery(medium) {
+      flex-direction: column;
+
+      div.profile-info-hr {
+        border-left-width: 0px;
+        border-top-width: 1px;
+        width: 100%;
+        height: 1px;
+      }
+    }
+    .profile-image-box {
+      flex: 2;
+      min-width: 200px;
+
+      .profile-image {
+        width: 128px;
+        height: 128px;
+        margin: 0 auto 1em auto;
+        div, img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover; // cover, contain, fill, none, scale-down
+          border-radius: 100%;
+        }
+      }
+      .profile-buttons {
+        width: 80%;
+        margin: 0 auto 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        button {
+          width: 100%;
+        }
+      }
+    }
+    .profile-info-box {
+      flex: 8;
+      width: 100%;
+      margin: 1em;
+    }
   }
 }

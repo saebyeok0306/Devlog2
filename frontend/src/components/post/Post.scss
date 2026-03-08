@@ -1,0 +1,105 @@
+@import "src/styles/commons";
+
+.post-container {
+  background-color: #fbfbfb;
+  &:is(.dark *) {
+    background-color: #242424;
+  }
+  padding: 2em 4em 2em 4em;
+  border-radius: 15px;
+  margin: 15px 0 15px 0;
+
+  @include mediaquery(medium) {
+    padding: 7px;
+  }
+
+  hr {
+    margin: 1em 0 1em 0;
+  }
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    margin: 1em 0 1em 0;
+    .post-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: -0.5em;
+    }
+    .post-category {
+      font-size: 1.1rem;
+    }
+    .post-datetime {
+      display: flex;
+      justify-content: center;
+      gap: 0.5em;
+
+      svg {
+        margin: auto 0 auto 0;
+      }
+    }
+  }
+
+  article {
+    margin: 2em 0 2em 0;
+    word-break: break-all;
+
+    .post-context {
+      pre {
+        position: relative;
+      }
+
+      pre button {
+        font-size: 0.9em;
+        position: absolute;
+        line-height: 0.9em;
+        top: 16px;
+        right: 16px;
+
+        background-color: #ffffff43;
+        border-radius: 10px;
+        padding: 5px;
+      }
+    }
+
+    .post-image-modal {
+      display: none; /* 처음에는 보이지 않도록 */
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+
+      img {
+        max-width: 90%;
+        max-height: 90%;
+      }
+    }
+    .post-image-modal.active {
+      display: flex;
+      flex-direction: column;
+
+      p {
+        user-select: none;
+      }
+    }
+  }
+
+  footer {
+    display: flex;
+    gap: 10px;
+    .post-footer-item {
+      display: flex;
+      font-size: 1em;
+      gap: 5px;
+      * {
+        margin: auto 0 auto 0;
+      }
+    }
+  }
+}

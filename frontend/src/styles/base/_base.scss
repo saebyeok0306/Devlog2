@@ -18,6 +18,14 @@ body {
   @include mediaquery(medium) {
     font-size: 12px;
   }
+
+  &.dark {
+    color: $font-white-color;
+  }
+
+  transition:
+    background-color 0.3s,
+    color 0.3s !important;
 }
 
 p {
@@ -30,14 +38,11 @@ p {
   flex-direction: column;
   min-height: 100vh;
 
-  &.dark {
-    color: $font-white-color;
+  // background-color: #e5e7eb;
+
+  &:is(.dark *) {
     background-color: $background-deep-black-color;
   }
-
-  transition:
-    background-color 0.3s,
-    color 0.3s;
 }
 
 .contentWrapper {
@@ -49,4 +54,28 @@ p {
 .liner {
   border-top: 1px solid black;
   margin-bottom: 0.5rem;
+}
+
+div[data-testid="flowbite-tooltip"] {
+  font-family: "SokchoBadaBatang";
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  //글자색
+  -webkit-text-fill-color: white;
+  //배경색
+  transition: background-color 86400s ease-in-out 0s !important;
+  -webkit-transition: background-color 86400s ease-in-out 0s !important;
+}
+
+input:autofill,
+input:autofill:hover,
+input:autofill:focus,
+input:autofill:active {
+  -webkit-text-fill-color: white;
+  transition: background-color 86400s ease-in-out 0s !important;
+  -webkit-transition: background-color 86400s ease-in-out 0s !important;
 }

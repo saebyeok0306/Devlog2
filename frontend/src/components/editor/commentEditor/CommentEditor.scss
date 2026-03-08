@@ -1,0 +1,35 @@
+@import "src/styles/commons";
+
+.editor-container.comment-editor {
+  position: relative;
+  width: 100%;
+  .editor-container__editor {
+    width: 100%;
+
+    .ck.ck-editor__editable:not(.ck-editor__nested-editable) {
+      min-height: 100px;
+      padding: 0 1em;
+      padding-bottom: 1rem;
+    }
+
+    .ck.ck-editor__main {
+    }
+
+    .ck.ck-content {
+      word-break: break-word;
+    }
+  }
+  .comment-editor-bottom {
+    display: flex;
+    gap: 5px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    user-select: none;
+  }
+}
+
+.g-recaptcha {
+  transform:scale(0.7);
+  transform-origin:0 0;
+}

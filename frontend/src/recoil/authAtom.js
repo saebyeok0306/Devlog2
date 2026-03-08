@@ -1,22 +1,17 @@
 import { atom } from "recoil";
-import { recoilPersist } from "recoil-persist";
 
-const { persistAtom } = recoilPersist({
-  key: "auth",
-  storage: sessionStorage,
-});
-
-export class Auth {
-  constructor(username = null, role = null, isLogin = false) {
-    this.username = username;
-    this.role = role;
-    this.isLogin = isLogin;
-  }
-}
+export const AUTH_DEFAULT = {
+  username: null,
+  about: "자기소개를 작성해주세요.",
+  email: null,
+  isLogin: false,
+  role: "GUEST",
+  profileUrl: null,
+  provider: null,
+  certificate: false,
+};
 
 export const authAtom = atom({
   key: "author",
-  /** @type {Auth} */
-  default: new Auth(),
-  effects_UNSTABLE: [persistAtom],
+  default: { ...AUTH_DEFAULT },
 });

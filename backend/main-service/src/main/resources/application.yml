@@ -1,0 +1,44 @@
+server:
+  port: 8000
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://discovery-service:8761/eureka/
+
+spring:
+  cloud:
+    config:
+      enabled: false
+  config:
+    import:
+      - classpath:/yaml/application-local.yml
+      - classpath:/yaml/application-prod.yml
+  profiles:
+    active: local
+  application:
+    name: main-service
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+jwt:
+  #HS512 알고리즘을 사용할 것이기 때문에 512bit, 즉 64byte 이상의 secret key를 사용해야 한다.
+  secret: ${JWT_SECRET}
+  access:
+    header: Authorization # unused
+    expiration: 3600
+  refresh:
+    header: Authorization-Refresh # unused
+    expiration: 1209600
+
+recaptcha:
+  secret_key: ${RECAPTCHA_PRIVATE_KEY}
+  verify_url: "https://www.google.com/recaptcha/api/siteverify"

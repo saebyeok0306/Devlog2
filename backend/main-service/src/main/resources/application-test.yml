@@ -1,0 +1,58 @@
+spring:
+  config:
+    activate:
+      on-profile: test
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${DEVLOG_GOOGLE_CLIENT_ID}
+            client-secret: ${DEVLOG_GOOGLE_CLIENT_SECRET}
+            scope: profile, email
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test;MODE=Oracle;
+    username: sa
+    password:
+  sql:
+    init:
+      mode: never
+  jpa:
+    hibernate:
+      ddl-auto: create # DDL (create/update/create-drop/validate/none)
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
+
+jwt:
+  secret: 1248678ec3a15d17b4b60cfa6e3cb3617f2de559ad9cb710bc693ab3d01f5a09955fefa111a924860978536dbd845519e2915356b3cd558d5ec8d2fa7584ab63
+  access:
+    header: Authorization
+    expiration: 3600
+  refresh:
+    header: Authorization-Refresh
+    expiration: 86400
+
+frontend:
+  url: http://localhost:3000
+  domain: localhost
+
+file:
+  upload:
+    path: /home/resource
+  request:
+    path: res
+
+recaptcha:
+  secret_key: 123
+  verify_url: "https://www.google.com/recaptcha/api/siteverify"
