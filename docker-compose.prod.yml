@@ -1,58 +1,19 @@
 networks:
-  ms-network:
+  devlog-network:
     driver: bridge
 
 services:
-  discovery-service:
+  backend:
     build:
-      context: ./backend/discovery-service
-      dockerfile: Dockerfile.prod
-    ports:
-      - "8761:8761"
-    networks:
-      - ms-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    restart: on-failure
-
-  gateway-service:
-    build:
-      context: ./backend/gateway-service
-      dockerfile: Dockerfile.prod
-    ports:
-      - "8760:8760"
-    depends_on:
-      discovery-service:
-        condition: service_healthy
-    networks:
-      - ms-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8760/actuator/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    environment:
-      JWT_SECRET: ${JWT_SECRET}
-    restart: on-failure
-
-  main-service:
-    build:
-      context: ./backend/main-service
+      context: ./backend
       dockerfile: Dockerfile.prod
     ports:
       - "8000:8000"
     depends_on:
       redis:
         condition: service_healthy
-      discovery-service:
-        condition: service_healthy
-      gateway-service:
-        condition: service_healthy
     networks:
-      - ms-network
+      - devlog-network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/actuator/health"]
       interval: 10s
@@ -66,60 +27,10 @@ services:
       DEVLOG_GOOGLE_CLIENT_SECRET: ${DEVLOG_GOOGLE_CLIENT_SECRET}
       JWT_SECRET: ${JWT_SECRET}
       RECAPTCHA_PRIVATE_KEY: ${RECAPTCHA_PRIVATE_KEY}
-    volumes:
-      - ${ORACLE_WALLET_PATH}:${ORACLE_WALLET_PATH}
-      - /home/static/resource:/home/static/resource
-    restart: on-failure
-
-  mail-service:
-    build:
-      context: ./backend/mail-service
-      dockerfile: Dockerfile.prod
-    ports:
-      - "8001:8001"
-    depends_on:
-      redis:
-        condition: service_healthy
-    networks:
-      - ms-network
-    environment:
       DEVLOG_MAIL_USERNAME: ${DEVLOG_MAIL_USERNAME}
       DEVLOG_MAIL_PASSWORD: ${DEVLOG_MAIL_PASSWORD}
-    restart: on-failure
-
-  llm-service:
-    build:
-      context: ./backend/llm-service
-      dockerfile: Dockerfile.prod
-    ports:
-      - "8100:8100"
-    depends_on:
-      discovery-service:
-        condition: service_healthy
-      gateway-service:
-        condition: service_healthy
-    networks:
-      - ms-network
-    environment:
-      OPENAI_API_KEY: ${OPENAI_API_KEY}
-    restart: on-failure
-
-  sitemap-service:
-    build:
-      context: ./backend/sitemap-service
-      dockerfile: Dockerfile.prod
-    ports:
-      - "8002:8002"
-    depends_on:
-      discovery-service:
-        condition: service_healthy
-      gateway-service:
-        condition: service_healthy
-      main-service:
-        condition: service_healthy
-    networks:
-      - ms-network
     volumes:
+      - /home/static/resource:/home/static/resource
       - /home/app/frontend/sitemap:/app/sitemap
       - /home/app/backend/sub-sitemap:/app/sub-sitemap
     restart: on-failure
@@ -134,5 +45,5 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - ms-network
+      - devlog-network
     restart: on-failure

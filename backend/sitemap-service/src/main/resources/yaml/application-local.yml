@@ -1,8 +1,0 @@
-spring:
-  config:
-    activate:
-      on-profile: local
-sitemap:
-  path: /app/sitemap
-  resource:
-    path: /app/sub-sitemap
