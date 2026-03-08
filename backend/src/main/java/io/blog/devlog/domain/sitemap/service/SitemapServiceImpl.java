@@ -29,6 +29,8 @@ public class SitemapServiceImpl implements SitemapService {
 
     private final PostService postService;
 
+    /* TODO: 순환참조 오류 해결 필요, PostService <-> SitemapService */
+
     @Value("${sitemap.path}")
     private String sitemapPath;
 
