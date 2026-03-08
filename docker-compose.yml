@@ -61,7 +61,7 @@ services:
       JWT_SECRET: ${JWT_SECRET}
       RECAPTCHA_PRIVATE_KEY: ${RECAPTCHA_PRIVATE_KEY}
     volumes:
-      - C:\\Programming\\Blog\\devlog\\backend\\main-service\\src\\main\\resources\\upload:/home/static/resource
+      - /home/app/static/resource:/home/static/resource
 
   mail-service:
     build: ./backend/mail-service
@@ -94,22 +94,22 @@ services:
     networks:
       - ms-network
     volumes:
-      - C:\\Programming\\Blog\\devlog\\backend\\sitemap-service\\src\\main\\resources\\sitemap:/app/sitemap
-      - C:\\Programming\\Blog\\devlog\\backend\\sitemap-service\\src\\main\\resources\\sub-sitemap:/app/sub-sitemap
+      - /home/app/sitemap:/app/sitemap
+      - /home/app/sub-sitemap:/app/sub-sitemap
 
-  llm-service:
-    build: ./backend/llm-service
-    ports:
-      - "8100:8100"
-    depends_on:
-      discovery-service:
-        condition: service_healthy
-      gateway-service:
-        condition: service_healthy
-    networks:
-      - ms-network
-    environment:
-      OPENAI_API_KEY: ${OPENAI_API_KEY}
+#  llm-service:
+#    build: ./backend/llm-service
+#    ports:
+#      - "8100:8100"
+#    depends_on:
+#      discovery-service:
+#        condition: service_healthy
+#      gateway-service:
+#        condition: service_healthy
+#    networks:
+#      - ms-network
+#    environment:
+#      OPENAI_API_KEY: ${OPENAI_API_KEY}
 
   redis:
     image: redis:7.4
