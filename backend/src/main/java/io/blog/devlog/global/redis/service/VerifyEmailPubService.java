@@ -13,6 +13,6 @@ public class VerifyEmailPubService {
     private final RedisTemplate<String, Object> redisTemplate;
 
     public void sendVerifyEmail(VerifyEmailMessage verifyEmailMessage) {
-        redisTemplate.convertAndSend("VerifyEmail", verifyEmailMessage);
+        redisTemplate.convertAndSend("verify-email-topic", verifyEmailMessage);
     }
 }

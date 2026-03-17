@@ -15,6 +15,19 @@ spring:
       enabled: true
       max-file-size: 20MB
       max-request-size: 20MB
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${DEVLOG_MAIL_USERNAME}
+    password: ${DEVLOG_MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          timeout: 5000
+          starttls:
+            enable: true
+
 
 jwt:
   #HS512 알고리즘을 사용할 것이기 때문에 512bit, 즉 64byte 이상의 secret key를 사용해야 한다.

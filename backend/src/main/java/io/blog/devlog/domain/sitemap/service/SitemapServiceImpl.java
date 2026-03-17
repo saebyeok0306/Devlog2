@@ -1,8 +1,10 @@
 package io.blog.devlog.domain.sitemap.service;
 
 import io.blog.devlog.domain.post.model.Post;
-import io.blog.devlog.domain.post.service.PostService;
+import io.blog.devlog.domain.post.repository.PostRepository;
 import io.blog.devlog.domain.sitemap.dto.PostUrlDto;
+import io.blog.devlog.domain.sitemap.dto.SitemapMessage;
+import io.blog.devlog.domain.user.model.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,9 +29,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class SitemapServiceImpl implements SitemapService {
 
-    private final PostService postService;
-
-    /* TODO: 순환참조 오류 해결 필요, PostService <-> SitemapService */
+    private final PostRepository postRepository;
 
     @Value("${sitemap.path}")
     private String sitemapPath;
@@ -38,6 +38,16 @@ public class SitemapServiceImpl implements SitemapService {
     private String sitemapResourcePath;
 
     private static final String siteUrl = "https://devlog.run";
+
+    // Redis 메시지를 수신하는 메서드
+    public void handleMessage(SitemapMessage message) {
+        PostUrlDto dto = PostUrlDto.of(message.getCategoryId(), message.getUrl());
+        if ("DELETE".equals(message.getAction())) {
+            this.deletePostFromSubSitemap(dto);
+        } else {
+            this.addPostToSubSitemap(dto);
+        }
+    }
 
     @Override
     public String generateSitemap() {
@@ -136,13 +146,13 @@ public class SitemapServiceImpl implements SitemapService {
     public void createAllPostToSubSitemap() {
         int page = 0;
         int size = 5;
-        Page<Post> postsPage = postService.getPosts(PageRequest.of(page, size));
+        Page<Post> postsPage = postRepository.findAllPagePublicPosts(PageRequest.of(page, size), Role.GUEST);
 
         processPosts(postsPage.getContent());
 
         if (postsPage.getTotalPages() > 1) {
             for (int i = 1; i < postsPage.getTotalPages(); i++) {
-                Page<Post> currentPage = postService.getPosts(PageRequest.of(i, size));
+                Page<Post> currentPage = postRepository.findAllPagePublicPosts(PageRequest.of(i, size), Role.GUEST);
                 processPosts(currentPage.getContent());
             }
         }

@@ -7,7 +7,7 @@ import io.blog.devlog.domain.post.model.Post;
 import io.blog.devlog.domain.post.model.PostDetail;
 import io.blog.devlog.domain.post.repository.PostRepository;
 import io.blog.devlog.domain.sitemap.dto.PostUrlDto;
-import io.blog.devlog.domain.sitemap.service.SitemapService;
+import io.blog.devlog.domain.sitemap.dto.SitemapMessage;
 import io.blog.devlog.domain.user.model.Role;
 import io.blog.devlog.domain.user.model.User;
 import io.blog.devlog.domain.user.service.UserService;
@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,8 +34,7 @@ public class PostService {
     private final UserService userService;
     private final FileService fileService;
 
-    private final SitemapService sitemapService;
-
+    private final RedisTemplate<String, Object> redisTemplate;
 
     public Post getPostById(Long id) {
         return postRepository.findById(id).orElse(null);
@@ -106,7 +106,8 @@ public class PostService {
         fileService.deleteFileFromPost(post);
         postRepository.delete(post);
 
-        sitemapService.deletePostFromSubSitemap(PostUrlDto.of(post.getCategory().getId(), post.getUrl()));
+        SitemapMessage message = new SitemapMessage("DELETE", post.getCategory().getId(), post.getUrl());
+        redisTemplate.convertAndSend("sitemap-topic", message);
     }
 
     public Slice<Post> getInfinitePosts(Pageable pageable, Long lastId) {

@@ -14,6 +14,6 @@ public class CommentEmailPubService {
     private final RedisTemplate<String, Object> redisTemplate;
 
     public void sendEmail(CommentEmailMessage emailMessage) {
-        redisTemplate.convertAndSend("CommentEmail", emailMessage);
+        redisTemplate.convertAndSend("comment-email-topic", emailMessage);
     }
 }

@@ -7,14 +7,14 @@ spring:
     url: jdbc:mariadb://${DEVLOG_TEST_DB_HOST}/devlog
     username: ${DEVLOG_TEST_DB_NM}
     password: ${DEVLOG_TEST_DB_PW}
-  sql:
-    init:
-      mode: always
-      data-locations: classpath:/sql/data-mysql.sql
+#  sql:
+#    init:
+#      mode: always
+#      data-locations: classpath:/sql/data-mysql.sql
   jpa:
-    defer-datasource-initialization: true # Hibernate 초기화 후 data-oracle.sql 실행
+#    defer-datasource-initialization: true # Hibernate 초기화 후 data-oracle.sql 실행
     hibernate:
-      ddl-auto: create # DDL (create/update/create-drop/validate/none)
+      ddl-auto: update # DDL (create/update/create-drop/validate/none)
     properties:
       hibernate:
         format_sql: true
