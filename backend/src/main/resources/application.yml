@@ -1,0 +1,44 @@
+server:
+  port: 8000
+
+spring:
+  config:
+    import:
+      - classpath:/yaml/application-local.yml
+      - classpath:/yaml/application-prod.yml
+  profiles:
+    active: local
+  application:
+    name: devlog-service
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${DEVLOG_MAIL_USERNAME}
+    password: ${DEVLOG_MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          timeout: 5000
+          starttls:
+            enable: true
+
+
+jwt:
+  #HS512 알고리즘을 사용할 것이기 때문에 512bit, 즉 64byte 이상의 secret key를 사용해야 한다.
+  secret: ${JWT_SECRET}
+  access:
+    header: Authorization # unused
+    expiration: 3600
+  refresh:
+    header: Authorization-Refresh # unused
+    expiration: 1209600
+
+recaptcha:
+  secret_key: ${RECAPTCHA_PRIVATE_KEY}
+  verify_url: "https://www.google.com/recaptcha/api/siteverify"

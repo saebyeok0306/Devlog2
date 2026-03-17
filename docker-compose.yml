@@ -1,55 +1,23 @@
 version: "3.9"
 
 networks:
-  ms-network:
+  devlog-network:
     driver: bridge
 
 services:
-  discovery-service:
-    build: ./backend/discovery-service
-    ports:
-      - "8761:8761"
-    networks:
-      - ms-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-  gateway-service:
-    build: ./backend/gateway-service
-    ports:
-      - "8760:8760"
-    depends_on:
-      discovery-service:
-        condition: service_healthy
-    networks:
-      - ms-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8760/actuator/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    environment:
-      JWT_SECRET: ${JWT_SECRET}
-
-  main-service:
-    build: ./backend/main-service
+  backend:
+    build: ./backend
     ports:
       - "8000:8000"
     depends_on:
       redis:
         condition: service_healthy
-      discovery-service:
-        condition: service_healthy
-      gateway-service:
-        condition: service_healthy
     networks:
-      - ms-network
+      - devlog-network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/actuator/health"]
-      interval: 10s
+      start_period: 60s
+      interval: 60s
       timeout: 5s
       retries: 5
     environment:
@@ -60,56 +28,12 @@ services:
       DEVLOG_GOOGLE_CLIENT_SECRET: ${DEVLOG_GOOGLE_CLIENT_SECRET}
       JWT_SECRET: ${JWT_SECRET}
       RECAPTCHA_PRIVATE_KEY: ${RECAPTCHA_PRIVATE_KEY}
-    volumes:
-      - /home/app/static/resource:/home/static/resource
-
-  mail-service:
-    build: ./backend/mail-service
-    ports:
-      - "8001:8001"
-    depends_on:
-      redis:
-        condition: service_healthy
-      discovery-service:
-        condition: service_healthy
-      gateway-service:
-        condition: service_healthy
-    networks:
-      - ms-network
-    environment:
       DEVLOG_MAIL_USERNAME: ${DEVLOG_MAIL_USERNAME}
       DEVLOG_MAIL_PASSWORD: ${DEVLOG_MAIL_PASSWORD}
-
-  sitemap-service:
-    build: ./backend/sitemap-service
-    ports:
-      - "8002:8002"
-    depends_on:
-      discovery-service:
-        condition: service_healthy
-      gateway-service:
-        condition: service_healthy
-      main-service:
-        condition: service_healthy
-    networks:
-      - ms-network
     volumes:
+      - /home/app/static/resource:/home/static/resource
       - /home/app/sitemap:/app/sitemap
       - /home/app/sub-sitemap:/app/sub-sitemap
-
-#  llm-service:
-#    build: ./backend/llm-service
-#    ports:
-#      - "8100:8100"
-#    depends_on:
-#      discovery-service:
-#        condition: service_healthy
-#      gateway-service:
-#        condition: service_healthy
-#    networks:
-#      - ms-network
-#    environment:
-#      OPENAI_API_KEY: ${OPENAI_API_KEY}
 
   redis:
     image: redis:7.4
@@ -121,7 +45,7 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - ms-network
+      - devlog-network
 
   # database:
   #   image: mysql:8.0
@@ -139,4 +63,4 @@ services:
   #     retries: 5
   #   tty: true
   #   networks:
-  #     - ms-network
+  #     - devlog-network

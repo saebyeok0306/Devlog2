@@ -1,0 +1,55 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://${DEVLOG_TEST_DB_HOST}/devlog
+    username: ${DEVLOG_TEST_DB_NM}
+    password: ${DEVLOG_TEST_DB_PW}
+#  sql:
+#    init:
+#      mode: always
+#      data-locations: classpath:/sql/data-mysql.sql
+  jpa:
+#    defer-datasource-initialization: true # Hibernate 초기화 후 data-oracle.sql 실행
+    hibernate:
+      ddl-auto: update # DDL (create/update/create-drop/validate/none)
+    properties:
+      hibernate:
+        format_sql: true
+        hightlight_sql: true
+        dialect: org.hibernate.dialect.MariaDBDialect
+  data:
+    redis:
+      host: redis
+      port: 6379
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${DEVLOG_GOOGLE_CLIENT_ID}
+            client-secret: ${DEVLOG_GOOGLE_CLIENT_SECRET}
+            redirect-uri: "http://localhost:8000/main/login/oauth2/code/{registrationId}"
+            scope: profile, email
+frontend:
+  url: http://localhost:3000
+  domain: localhost
+file:
+  upload:
+    path: /home/static/resource
+  request:
+    path: res
+
+sitemap:
+  path: /app/sitemap
+  resource:
+    path: /app/sub-sitemap
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        orm.jdbc.bind: TRACE
